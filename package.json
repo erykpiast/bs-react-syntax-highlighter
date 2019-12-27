@@ -1,0 +1,53 @@
+{
+  "name": "bs-react-syntax-highlighter",
+  "version": "0.1.0",
+  "description": "ReasonML bindings for react-syntax-highlighter library",
+  "main": "src/ReactSyntaxHiglighter.re",
+  "files": [
+    "src/*.re",
+    "src/*.ml",
+    "bsconfig.json"
+  ],
+  "scripts": {
+    "build": "bsb -make-world",
+    "clean": "bsb -clean-world",
+    "prepublish": "npm run clean && npm run build",
+    "pretest": "npm run build",
+    "start": "bsb -make-world -w",
+    "test": "TEST=true jest",
+    "release": "standard-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erykpiast/bs-react-syntax-highlighter.git"
+  },
+  "keywords": [
+    "reason",
+    "bucklescript",
+    "bindings",
+    "react",
+    "dropzone"
+  ],
+  "author": "Eryk Napierała",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/erykpiast/bs-react-syntax-highlighter/issues"
+  },
+  "homepage": "https://github.com/erykpiast/bs-react-syntax-highlighter#readme",
+  "peerDependencies": {
+    "react-syntax-highlighter": "12.x.x",
+    "reason-react": "0.7.x"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "7.7.7",
+    "@glennsl/bs-jest": "0.4.9",
+    "babel-jest": "24.9.0",
+    "bs-enzyme": "erykpiast/bs-enzyme#1b543e6",
+    "bs-platform": "7.0.1",
+    "enzyme-adapter-react-16": "1.15.2",
+    "jest": "24.9.0",
+    "react-syntax-highlighter": "12.2.1",
+    "reason-react": "0.7.0",
+    "standard-version": "7.0.1"
+  }
+}

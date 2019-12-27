@@ -1,0 +1,25 @@
+{
+  "name": "bs-react-syntax-highlighter",
+  "sources": [{
+    "dir": "src"
+  }, {
+    "dir": "__tests__",
+    "type": "dev"
+  }],
+  "package-specs": [{
+    "module": "es6",
+    "in-source": true
+  }],
+  "suffix": ".bs.js",
+  "bs-dependencies": [
+    "reason-react"
+  ],
+  "bs-dev-dependencies": [
+    "@glennsl/bs-jest",
+    "bs-enzyme"
+  ],
+  "refmt": 3,
+  "reason": {
+    "react-jsx": 3
+  }
+}
