@@ -16,13 +16,23 @@ Then add `bs-react-syntax-highlighter` as a dependency to `bsconfig.json`.
 
 ## Usage
 
+Unlike in the JavaScript counterpart, there is no default highlighter - you have to choose Hljs or Prism explicitly.
+
 ```reasonml
 [@react.component]
 let make = () => {
-  <ReactSyntaxHighlighter
-    language="javascript">
-    {"A code to highlight" |> React.string}
-  </ReactSyntaxHighlighter>;
+  <ReactSyntaxHighlighter.Prism style={ReactSyntaxHighlighter.Prism.Style.darcula}>
+    {"A code to highlight"}
+  </ReactSyntaxHighlighter.Prism>;
+};
+```
+
+```reasonml
+[@react.component]
+let make = () => {
+  <ReactSyntaxHighlighter.Hljs language={`JavaScript}>
+    {"const foo = () => {};"}
+  </ReactSyntaxHighlighter.Hljs>;
 };
 ```
 
@@ -31,15 +41,14 @@ let make = () => {
 The package provides fallback for projects using older version of JSX syntax.
 
 ```reasonml
-let component = ReasonReact.statelessComponent("Demo");
-
+[@react.component]
 let make = () => {
-  ...component,
-  render: (_self) => {
-    <ReactSyntaxHighlighter.Jsx2
-      language="javascript">
-      {"A code to highlight" |> ReasonReact.string}
-    </ReactSyntaxHighlighter.Jsx2>;
-  }
+  <ReactSyntaxHighlighter.Hljs.Jsx2 language={`JavaScript}>
+    ...{"const foo = () => {};"}
+  </ReactSyntaxHighlighter.Hljs.Jsx2>;
 };
 ```
+
+## Notes
+
+An **async build** and a **light build** are not currently supported. PRs are welcome!
