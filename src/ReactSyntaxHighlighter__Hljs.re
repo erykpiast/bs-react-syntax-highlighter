@@ -45,6 +45,7 @@ external make:
   ~renderer: Renderer.t=?,
   ~_PreTag: React.element=?,
   ~_CodeTag: React.element=?,
+  ~className: string=?,
   ~children: string
  ) => React.element = "default";
 
@@ -63,6 +64,7 @@ let makeProps = (
   ~renderer=?,
   ~_PreTag=?,
   ~_CodeTag=?,
+  ~className=?,
   ~children
  ) => makeProps(
   ~language=?(language <$> ReactSyntaxHighlighter__Hljs__Language.toString),
@@ -79,6 +81,7 @@ let makeProps = (
   ~renderer?,
   ~_PreTag?,
   ~_CodeTag?,
+  ~className?,
   ~children
 );
 
@@ -101,6 +104,7 @@ module Jsx2 = {
       ~renderer=?,
       ~_CodeTag=?,
       ~_PreTag=?,
+      ~className=?,
       children,
     ) => ReasonReactCompat.wrapReactForReasonReact(
       make,
@@ -119,6 +123,7 @@ module Jsx2 = {
         ~renderer?,
         ~_CodeTag?,
         ~_PreTag?,
+        ~className?,
         ~children,
         (),
       ),
