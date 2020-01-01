@@ -91,4 +91,20 @@ describe("jsx3", () => {
 
     expect(reasonComponent) |> toEqual(jsComponent);
   });
+
+  test("className", () => {
+    let reasonComponent = (
+      <ReactSyntaxHighlighter.Hljs className={"foo"}>
+      {"foobar"}
+      </ReactSyntaxHighlighter.Hljs>
+    );
+    let jsComponent = [%bs.raw "
+      require('react').createElement(
+        require('react-syntax-highlighter').default,
+        { className: 'foo' },
+        'foobar')
+    "];
+
+    expect(reasonComponent) |> toEqual(jsComponent);
+  });
 });

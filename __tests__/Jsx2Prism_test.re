@@ -93,4 +93,20 @@ describe("jsx2", () => {
 
     expect(reasonComponent) |> toEqual(jsComponent);
   });
+
+  test("className", () => {
+    let reasonComponent = (
+      <ReactSyntaxHighlighter.Prism.Jsx2 className={"foo"}>
+      ...{"foobar"}
+      </ReactSyntaxHighlighter.Prism.Jsx2>
+    );
+    let jsComponent = [%bs.raw "
+      require('react').createElement(
+        require('react-syntax-highlighter').Prism,
+        { className: 'foo' },
+        'foobar')
+    "];
+
+    expect(reasonComponent) |> toEqual(jsComponent);
+  });
 });
