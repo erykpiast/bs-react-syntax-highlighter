@@ -4,18 +4,7 @@ module Style = ReactSyntaxHighlighter__Prism__Style;
 
 module Language = ReactSyntaxHighlighter__Prism__Language;
 
-module Renderer = {
-  module Input = {
-    type t = Js.t({
-      .
-      rows: list(Element.t),
-      stylesheet: ReactSyntaxHighlighter__Prism__Style.t,
-      useInlineStyles: bool,
-    });
-  };
-
-  type t = Input.t => React.element;
-};
+module Renderer = CommonRenderer(ReactSyntaxHighlighter__Prism__Style);
 
 [@bs.module "react-syntax-highlighter"] [@react.component]
 external make:

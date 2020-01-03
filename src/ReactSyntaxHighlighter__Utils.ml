@@ -28,9 +28,26 @@ module LineProps = struct
     ]
   ;;
 
-  let make (value : t) =
+  let make (value: t) =
     match value with
     | `Factory propsFactory -> JsUnsafe.make propsFactory
     | `Plain plainProps -> JsUnsafe.make plainProps
   ;;
+end
+
+module type StyleModule = sig
+  type t;;
+end
+
+module CommonRenderer (Style: StyleModule) = struct
+  module Input = struct
+    type t =
+      < rows: Element.t list
+      ; stylesheet: Style.t
+      ; useInlineStyles: bool
+      > Js.t
+    ;;
+  end
+
+  type t = Input.t -> React.element;;
 end

@@ -4,18 +4,8 @@ module Style = ReactSyntaxHighlighter__Hljs__Style;
 
 module Language = ReactSyntaxHighlighter__Hljs__Language;
 
-module Renderer = {
-  module Input = {
-    type t = Js.t({
-      .
-      rows: list(Element.t),
-      stylesheet: ReactSyntaxHighlighter__Hljs__Style.t,
-      useInlineStyles: bool,
-    });
-  };
+module Renderer = CommonRenderer(ReactSyntaxHighlighter__Hljs__Style);
 
-  type t = Input.t => React.element;
-};
 [@bs.module "react-syntax-highlighter"] [@react.component]
 external make:
  (
