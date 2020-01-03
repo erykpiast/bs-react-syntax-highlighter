@@ -6,6 +6,8 @@ let (<$>) option mapper = (
 
 let (||>) f g x = g(f(x));;
 
-type jsUnsafe;;
+module JsUnsafe = struct
+  type t;;
 
-external toJsUnsafe : 'a -> jsUnsafe = "%identity";;
+  external make : 'a -> t = "%identity";;
+end

@@ -36,8 +36,8 @@ module LineProps = {
 
   let make = (value: t) =>
     switch (value) {
-    | `Factory(propsFactory) => toJsUnsafe(propsFactory)
-    | `Plain(palainProps) => toJsUnsafe(palainProps)
+    | `Factory(propsFactory) => JsUnsafe.make(propsFactory)
+    | `Plain(palainProps) => JsUnsafe.make(palainProps)
     };
 }
 
@@ -54,7 +54,7 @@ external make:
   ~lineNumberContainerProps: ReactDOMRe.props=?,
   ~lineNumberProps: ReactDOMRe.props=?,
   ~wrapLines: bool=?,
-  ~lineProps: jsUnsafe=?,
+  ~lineProps: JsUnsafe.t=?,
   ~renderer: Renderer.t=?,
   ~_PreTag: React.element=?,
   ~_CodeTag: React.element=?,
