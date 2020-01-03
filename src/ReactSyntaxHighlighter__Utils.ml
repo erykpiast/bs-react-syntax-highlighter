@@ -10,6 +10,17 @@ module JsUnsafe = struct
   external make : 'a -> t = "%identity";;
 end
 
+module Element = struct
+  type t =
+    < properties: ReactDOMRe.props
+    ; type_: string
+    ; tagName: string
+    ; value: string
+    ; children: t list
+    > Js.t
+  ;;
+end
+
 module LineProps = struct
   type t =
     [ `Factory of int -> ReactDOMRe.props

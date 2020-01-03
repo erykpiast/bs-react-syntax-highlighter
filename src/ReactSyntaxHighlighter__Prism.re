@@ -4,17 +4,6 @@ module Style = ReactSyntaxHighlighter__Prism__Style;
 
 module Language = ReactSyntaxHighlighter__Prism__Language;
 
-module Element = {
-  type t = Js.t({
-    .
-    properties: ReactDOMRe.props,
-    type_: string,
-    tagName: string,
-    value: string,
-    children: list(t)
-  });
-}
-
 module Renderer = {
   module Input = {
     type t = Js.t({
