@@ -27,20 +27,6 @@ module Renderer = {
 
   type t = Input.t => React.element;
 };
-
-module LineProps = {
-  type t = [
-    | `Factory((int) => ReactDOMRe.props)
-    | `Plain(ReactDOMRe.props)
-  ];
-
-  let make = (value: t) =>
-    switch (value) {
-    | `Factory(propsFactory) => JsUnsafe.make(propsFactory)
-    | `Plain(palainProps) => JsUnsafe.make(palainProps)
-    };
-}
-
 [@bs.module "react-syntax-highlighter"] [@react.component]
 external make:
  (
