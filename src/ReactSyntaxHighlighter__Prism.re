@@ -8,7 +8,7 @@ module Element = {
   type t = Js.t({
     .
     properties: ReactDOMRe.props,
-    [@bs.as "type"] type_: string,
+    type_: string,
     tagName: string,
     value: string,
     children: list(t)
