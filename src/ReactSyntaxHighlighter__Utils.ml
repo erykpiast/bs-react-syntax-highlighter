@@ -5,3 +5,7 @@ let (<$>) option mapper = (
 );;
 
 let (||>) f g x = g(f(x));;
+
+type jsUnsafe;;
+
+external toJsUnsafe : 'a -> jsUnsafe = "%identity";;

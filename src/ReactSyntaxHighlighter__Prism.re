@@ -28,6 +28,19 @@ module Renderer = {
   type t = Input.t => React.element;
 };
 
+module LineProps = {
+  type t = [
+    | `Factory((int) => ReactDOMRe.props)
+    | `Plain(ReactDOMRe.props)
+  ];
+
+  let make = (value: t) =>
+    switch (value) {
+    | `Factory(propsFactory) => toJsUnsafe(propsFactory)
+    | `Plain(palainProps) => toJsUnsafe(palainProps)
+    };
+}
+
 [@bs.module "react-syntax-highlighter"] [@react.component]
 external make:
  (
@@ -41,7 +54,7 @@ external make:
   ~lineNumberContainerProps: ReactDOMRe.props=?,
   ~lineNumberProps: ReactDOMRe.props=?,
   ~wrapLines: bool=?,
-  ~lineProps: ReactDOMRe.props=?,
+  ~lineProps: jsUnsafe=?,
   ~renderer: Renderer.t=?,
   ~_PreTag: React.element=?,
   ~_CodeTag: React.element=?,
@@ -77,7 +90,7 @@ let makeProps = (
   ~lineNumberContainerProps?,
   ~lineNumberProps?,
   ~wrapLines?,
-  ~lineProps?,
+  ~lineProps=?(lineProps <$> LineProps.make),
   ~renderer?,
   ~_PreTag?,
   ~_CodeTag?,
