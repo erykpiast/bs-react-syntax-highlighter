@@ -107,4 +107,40 @@ describe("jsx3", () => {
 
     expect(reasonComponent) |> toEqual(jsComponent);
   });
+
+  describe("line props", () => {
+    test("plain object", () => {
+      let props = `Plain(ReactDOMRe.props(~className="foobar", ()));
+      let reasonComponent = (
+        <ReactSyntaxHighlighter.Prism lineProps={props} wrapLines={true}>
+        {"foobar"}
+        </ReactSyntaxHighlighter.Prism>
+      ) |> Enzyme.shallow;
+      let jsComponent = [%bs.raw "
+        require('react').createElement(
+          require('react-syntax-highlighter').Prism,
+          { lineProps: { className: 'foobar' }, wrapLines: true },
+          'foobar')
+      "] |> Enzyme.shallow;
+
+      expect(reasonComponent) |> toEqual(jsComponent);
+    });
+
+    test("function object", () => {
+      let props = `Factory((ln) => ReactDOMRe.props(~className="foobar_" ++ string_of_int(ln), ()));
+      let reasonComponent = (
+        <ReactSyntaxHighlighter.Prism lineProps={props} wrapLines={true}>
+        {"foobar"}
+        </ReactSyntaxHighlighter.Prism>
+      ) |> Enzyme.shallow;
+      let jsComponent = [%bs.raw "
+        require('react').createElement(
+          require('react-syntax-highlighter').Prism,
+          { lineProps: (ln) => ({ className: 'foobar_' + ln }), wrapLines: true },
+          'foobar')
+      "] |> Enzyme.shallow;
+
+      expect(reasonComponent) |> toEqual(jsComponent);
+    });
+  });
 });

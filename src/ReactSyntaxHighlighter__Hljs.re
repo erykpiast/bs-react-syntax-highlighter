@@ -4,35 +4,13 @@ module Style = ReactSyntaxHighlighter__Hljs__Style;
 
 module Language = ReactSyntaxHighlighter__Hljs__Language;
 
-module Element = {
-  type t = Js.t({
-    .
-    properties: ReactDOMRe.props,
-    [@bs.as "type"] type_: string,
-    tagName: string,
-    value: string,
-    children: list(t)
-  });
-}
-
-module Renderer = {
-  module Input = {
-    type t = Js.t({
-      .
-      rows: list(Element.t),
-      stylesheet: ReactSyntaxHighlighter__Hljs__Style.t,
-      useInlineStyles: bool,
-    });
-  };
-
-  type t = Input.t => React.element;
-};
+module Renderer = CommonRenderer(Style);
 
 [@bs.module "react-syntax-highlighter"] [@react.component]
 external make:
  (
   ~language: string=?,
-  ~style: ReactSyntaxHighlighter__Hljs__Style.t=?,
+  ~style: Style.t=?,
   ~customStyle: ReactDOMRe.style=?,
   ~codeTagProps: ReactDOMRe.props=?,
   ~useInlineStyles: bool=?,
@@ -41,7 +19,7 @@ external make:
   ~lineNumberContainerProps: ReactDOMRe.props=?,
   ~lineNumberProps: ReactDOMRe.props=?,
   ~wrapLines: bool=?,
-  ~lineProps: ReactDOMRe.props=?,
+  ~lineProps: JsUnsafe.t=?,
   ~renderer: Renderer.t=?,
   ~_PreTag: React.element=?,
   ~_CodeTag: React.element=?,
@@ -67,7 +45,7 @@ let makeProps = (
   ~className=?,
   ~children
  ) => makeProps(
-  ~language=?(language <$> ReactSyntaxHighlighter__Hljs__Language.toString),
+  ~language=?(language <$> Language.toString),
   ~style?,
   ~customStyle?,
   ~codeTagProps?,
@@ -77,7 +55,7 @@ let makeProps = (
   ~lineNumberContainerProps?,
   ~lineNumberProps?,
   ~wrapLines?,
-  ~lineProps?,
+  ~lineProps=?(lineProps <$> LineProps.make),
   ~renderer?,
   ~_PreTag?,
   ~_CodeTag?,
