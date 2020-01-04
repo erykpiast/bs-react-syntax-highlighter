@@ -4,13 +4,13 @@ module Style = ReactSyntaxHighlighter__Prism__Style;
 
 module Language = ReactSyntaxHighlighter__Prism__Language;
 
-module Renderer = CommonRenderer(ReactSyntaxHighlighter__Prism__Style);
+module Renderer = CommonRenderer(Style);
 
 [@bs.module "react-syntax-highlighter"] [@react.component]
 external make:
  (
   ~language: string=?,
-  ~style: ReactSyntaxHighlighter__Prism__Style.t=?,
+  ~style: Style.t=?,
   ~customStyle: ReactDOMRe.style=?,
   ~codeTagProps: ReactDOMRe.props=?,
   ~useInlineStyles: bool=?,
@@ -45,7 +45,7 @@ let makeProps = (
   ~className=?,
   ~children
  ) => makeProps(
-  ~language=?(language <$> ReactSyntaxHighlighter__Prism__Language.toString),
+  ~language=?(language <$> Language.toString),
   ~style?,
   ~customStyle?,
   ~codeTagProps?,
