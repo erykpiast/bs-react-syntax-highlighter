@@ -21,8 +21,8 @@ external make:
   ~wrapLines: bool=?,
   ~lineProps: JsUnsafe.t=?,
   ~renderer: Renderer.t=?,
-  ~_PreTag: React.element=?,
-  ~_CodeTag: React.element=?,
+  ~_PreTag: JsUnsafe.t=?,
+  ~_CodeTag: JsUnsafe.t=?,
   ~className: string=?,
   ~children: string
  ) => React.element = "default";
@@ -57,8 +57,8 @@ let makeProps = (
   ~wrapLines?,
   ~lineProps=?(lineProps <$> LineProps.make),
   ~renderer?,
-  ~_PreTag?,
-  ~_CodeTag?,
+  ~_PreTag=?(_PreTag <$> Tag.make),
+  ~_CodeTag=?(_CodeTag <$> Tag.make),
   ~className?,
   ~children
 );

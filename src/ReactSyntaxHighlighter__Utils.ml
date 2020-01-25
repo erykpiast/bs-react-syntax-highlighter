@@ -51,3 +51,15 @@ module CommonRenderer (Style: StyleModule) = struct
 
   type t = Input.t -> React.element;;
 end
+
+module Tag = struct
+  type 'a t = [
+    | `intrinsic of string
+    | `component of 'a
+  ];;
+
+  let make = function
+  | `intrinsic t -> JsUnsafe.make t
+  | `component c -> JsUnsafe.make c
+  ;;
+end

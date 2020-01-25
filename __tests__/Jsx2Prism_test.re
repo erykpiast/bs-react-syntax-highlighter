@@ -78,16 +78,35 @@ describe("jsx2", () => {
     expect(reasonComponent) |> toEqual(jsComponent);
   });
 
-  test("pre tag", () => {
+  test("pre tag as string", () => {
     let reasonComponent = (
-      <ReactSyntaxHighlighter.Prism.Jsx2 _PreTag={<span />}>
+      <ReactSyntaxHighlighter.Prism.Jsx2 _PreTag={`intrinsic("span")}>
       ...{"foobar"}
       </ReactSyntaxHighlighter.Prism.Jsx2>
     );
     let jsComponent = [%bs.raw "
       require('react').createElement(
         require('react-syntax-highlighter').Prism,
-        { PreTag: require('react').createElement('span') },
+        { PreTag: 'span' },
+        'foobar')
+    "];
+
+    expect(reasonComponent) |> toEqual(jsComponent);
+  });
+
+  test("pre tag as component", () => {
+    let fn = (props) => {
+      <Foo.Jsx2 style={props##style}>...{props##children}</Foo.Jsx2>
+    };
+    let reasonComponent = (
+      <ReactSyntaxHighlighter.Prism.Jsx2 _PreTag={`component(fn)}>
+      ...{"foobar"}
+      </ReactSyntaxHighlighter.Prism.Jsx2>
+    );
+    let jsComponent = [%bs.raw "
+      require('react').createElement(
+        require('react-syntax-highlighter').Prism,
+        { PreTag: fn },
         'foobar')
     "];
 
