@@ -1,4 +1,5 @@
 module.exports = {
+  testMatch: ['**/__tests__/**/*_test.bs.js'],
   moduleFileExtensions: ['js'],
   transform: {
     '^.+\\.js$': './jest-transform.js',

@@ -76,16 +76,35 @@ describe("jsx3", () => {
     expect(reasonComponent) |> toEqual(jsComponent);
   });
 
-  test("pre tag", () => {
+  test("pre tag as intrinsic", () => {
     let reasonComponent = (
-      <ReactSyntaxHighlighter.Hljs _PreTag={<span />}>
+      <ReactSyntaxHighlighter.Hljs _PreTag={`intrinsic("span")}>
       {"foobar"}
       </ReactSyntaxHighlighter.Hljs>
     );
     let jsComponent = [%bs.raw "
       require('react').createElement(
         require('react-syntax-highlighter').default,
-        { PreTag: require('react').createElement('span') },
+        { PreTag: 'span' },
+        'foobar')
+    "];
+
+    expect(reasonComponent) |> toEqual(jsComponent);
+  });
+
+  test("pre tag as component", () => {
+    let fn = (props) => {
+      <Foo style={props##style}>props##children</Foo>
+    };
+    let reasonComponent = (
+      <ReactSyntaxHighlighter.Hljs _PreTag={`component(fn)}>
+      ...{"foobar"}
+      </ReactSyntaxHighlighter.Hljs>
+    );
+    let jsComponent = [%bs.raw "
+      require('react').createElement(
+        require('react-syntax-highlighter').default,
+        { PreTag: fn },
         'foobar')
     "];
 
