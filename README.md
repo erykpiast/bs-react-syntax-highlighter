@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.com/erykpiast/bs-react-syntax-highlighter.svg?branch=master)](https://travis-ci.com/erykpiast/bs-react-syntax-highlighter)
 [![dependencies Status](https://david-dm.org/erykpiast/bs-react-syntax-highlighter/status.svg)](https://david-dm.org/erykpiast/bs-react-syntax-highlighter)
+[![devDependencies Status](https://david-dm.org/erykpiast/bs-react-syntax-highlighter/dev-status.svg)](https://david-dm.org/erykpiast/bs-react-syntax-highlighter?type=dev)
+[![peerDependencies Status](https://david-dm.org/erykpiast/bs-react-syntax-highlighter/peer-status.svg)](https://david-dm.org/erykpiast/bs-react-syntax-highlighter?type=peer)
 [![Greenkeeper badge](https://badges.greenkeeper.io/erykpiast/bs-react-syntax-highlighter.svg)](https://greenkeeper.io/)
 
 ReasonML bindings for [react-syntax-highlighter](https://github.com/conorhastings/react-syntax-highlighter) library.
