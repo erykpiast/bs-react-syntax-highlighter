@@ -1,6 +1,6 @@
 # bs-react-syntax-highlighter
 
-[![Build Status](https://travis-ci.org/erykpiast/bs-react-syntax-highlighter.svg?branch=master)](https://travis-ci.org/erykpiast/bs-react-syntax-highlighter)
+[![Build Status](https://travis-ci.com/erykpiast/bs-react-syntax-highlighter.svg?branch=master)](https://travis-ci.com/erykpiast/bs-react-syntax-highlighter)
 [![dependencies Status](https://david-dm.org/erykpiast/bs-react-syntax-highlighter/status.svg)](https://david-dm.org/erykpiast/bs-react-syntax-highlighter)
 [![Greenkeeper badge](https://badges.greenkeeper.io/erykpiast/bs-react-syntax-highlighter.svg)](https://greenkeeper.io/)
 
