@@ -22,11 +22,10 @@
     "url": "git+https://github.com/erykpiast/bs-react-syntax-highlighter.git"
   },
   "keywords": [
-    "reason",
-    "bucklescript",
+    "reasonml",
     "bindings",
-    "react",
-    "dropzone"
+    "reason-react",
+    "syntax-highlighting"
   ],
   "author": "Eryk Napierała",
   "license": "MIT",
