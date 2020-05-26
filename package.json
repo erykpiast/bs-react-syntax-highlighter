@@ -34,6 +34,8 @@
   },
   "homepage": "https://github.com/erykpiast/bs-react-syntax-highlighter#readme",
   "peerDependencies": {
+    "react": "16.x.x",
+    "react-dom": "16.x.x",
     "react-syntax-highlighter": "12.x.x",
     "reason-react": "0.8.x"
   },
@@ -45,6 +47,8 @@
     "bs-platform": "7.3.2",
     "enzyme-adapter-react-16": "1.15.2",
     "jest": "24.9.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
     "react-syntax-highlighter": "12.2.1",
     "reason-react": "0.8.0",
     "standard-version": "8.0.0"
