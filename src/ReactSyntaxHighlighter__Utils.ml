@@ -16,7 +16,7 @@ module Element = struct
     ; type_: string
     ; tagName: string
     ; value: string
-    ; children: t list
+    ; children: t array
     > Js.t
   ;;
 end
@@ -42,7 +42,7 @@ end
 module CommonRenderer (Style: StyleModule) = struct
   module Input = struct
     type t =
-      < rows: Element.t list
+      < rows: Element.t array
       ; stylesheet: Style.t
       ; useInlineStyles: bool
       > Js.t

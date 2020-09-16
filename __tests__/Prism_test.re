@@ -54,9 +54,9 @@ describe("jsx3", () => {
 
   test("renderer", () => {
     let renderer: ReactSyntaxHighlighter.Prism.Renderer.t = (input) => {
-      let theFirstRow = List.nth(input##rows, 0);
-      let theFirstElement = List.nth(theFirstRow##children, 0);
-      let textNode = List.nth(theFirstElement##children, 0);
+      let theFirstRow = input##rows[0];
+      let theFirstElement = theFirstRow##children[0];
+      let textNode = theFirstElement##children[0];
       let text = textNode##value;
 
       text |> React.string;
