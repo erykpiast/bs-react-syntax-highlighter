@@ -1,16 +1,14 @@
-[@bs.config {jsx: 2}];
-
 open Jest;
 open ExpectJs;
 
 Enzyme.configureEnzyme(Enzyme.react_16_adapter());
 
-describe("jsx2", () => {
+describe("jsx3", () => {
   test("empty", () => {
     let reasonComponent = (
-      <ReactSyntaxHighlighter.Hljs.Jsx2>
-      ...{""}
-      </ReactSyntaxHighlighter.Hljs.Jsx2>
+      <ReactSyntaxHighlighter.Hljs>
+      {""}
+      </ReactSyntaxHighlighter.Hljs>
     );
     let jsComponent = [%bs.raw "
       require('react').createElement(
@@ -24,9 +22,9 @@ describe("jsx2", () => {
 
   test("language", () => {
     let reasonComponent = (
-      <ReactSyntaxHighlighter.Hljs.Jsx2 language={`JavaScript}>
-      ...{"const foo = () => {};"}
-      </ReactSyntaxHighlighter.Hljs.Jsx2>
+      <ReactSyntaxHighlighter.Hljs language={`JavaScript}>
+      {"const foo = () => {};"}
+      </ReactSyntaxHighlighter.Hljs>
     );
     let jsComponent = [%bs.raw "
       require('react').createElement(
@@ -40,14 +38,14 @@ describe("jsx2", () => {
 
   test("style", () => {
     let reasonComponent = (
-      <ReactSyntaxHighlighter.Hljs.Jsx2 style={ReactSyntaxHighlighter.Hljs.Style.dracula}>
-      ...{"foobar"}
-      </ReactSyntaxHighlighter.Hljs.Jsx2>
+      <ReactSyntaxHighlighter.Hljs style={ReactSyntaxHighlighter.Hljs.Style.darcula}>
+      {"foobar"}
+      </ReactSyntaxHighlighter.Hljs>
     );
     let jsComponent = [%bs.raw "
       require('react').createElement(
         require('react-syntax-highlighter').default,
-        { style: require('react-syntax-highlighter/dist/esm/styles/hljs').dracula },
+        { style: require('react-syntax-highlighter/dist/esm/styles/hljs').darcula },
         'foobar')
     "];
 
@@ -56,17 +54,17 @@ describe("jsx2", () => {
 
   test("renderer", () => {
     let renderer: ReactSyntaxHighlighter.Hljs.Renderer.t = (input) => {
-      let theFirstRow = List.nth(input##rows, 0);
-      let theFirstElement = List.nth(theFirstRow##children, 0);
-      let textNode = List.nth(theFirstElement##children, 0);
+      let theFirstRow = input##rows[0];
+      let theFirstElement = theFirstRow##children[0];
+      let textNode = theFirstElement##children[0];
       let text = textNode##value;
 
       text |> React.string;
     };
     let reasonComponent = (
-      <ReactSyntaxHighlighter.Hljs.Jsx2 renderer>
-      ...{"foobar"}
-      </ReactSyntaxHighlighter.Hljs.Jsx2>
+      <ReactSyntaxHighlighter.Hljs renderer>
+      {"foobar"}
+      </ReactSyntaxHighlighter.Hljs>
     ) |> Enzyme.shallow;
     let jsComponent = [%bs.raw "
       require('react').createElement(
@@ -80,9 +78,9 @@ describe("jsx2", () => {
 
   test("pre tag as intrinsic", () => {
     let reasonComponent = (
-      <ReactSyntaxHighlighter.Hljs.Jsx2 _PreTag={`intrinsic("span")}>
-      ...{"foobar"}
-      </ReactSyntaxHighlighter.Hljs.Jsx2>
+      <ReactSyntaxHighlighter.Hljs _PreTag={`intrinsic("span")}>
+      {"foobar"}
+      </ReactSyntaxHighlighter.Hljs>
     );
     let jsComponent = [%bs.raw "
       require('react').createElement(
@@ -96,12 +94,12 @@ describe("jsx2", () => {
 
   test("pre tag as component", () => {
     let fn = (props) => {
-      <Foo.Jsx2 style={props##style}>...{props##children}</Foo.Jsx2>
+      <Foo style={props##style}>props##children</Foo>
     };
     let reasonComponent = (
-      <ReactSyntaxHighlighter.Hljs.Jsx2 _PreTag={`component(fn)}>
+      <ReactSyntaxHighlighter.Hljs _PreTag={`component(fn)}>
       ...{"foobar"}
-      </ReactSyntaxHighlighter.Hljs.Jsx2>
+      </ReactSyntaxHighlighter.Hljs>
     );
     let jsComponent = [%bs.raw "
       require('react').createElement(
@@ -115,9 +113,9 @@ describe("jsx2", () => {
 
   test("className", () => {
     let reasonComponent = (
-      <ReactSyntaxHighlighter.Hljs.Jsx2 className={"foo"}>
-      ...{"foobar"}
-      </ReactSyntaxHighlighter.Hljs.Jsx2>
+      <ReactSyntaxHighlighter.Hljs className={"foo"}>
+      {"foobar"}
+      </ReactSyntaxHighlighter.Hljs>
     );
     let jsComponent = [%bs.raw "
       require('react').createElement(
@@ -133,9 +131,9 @@ describe("jsx2", () => {
     test("plain object", () => {
       let props = `Plain(ReactDOMRe.props(~className="foobar", ()));
       let reasonComponent = (
-        <ReactSyntaxHighlighter.Hljs.Jsx2 lineProps={props} wrapLines={true}>
-        ...{"foobar"}
-        </ReactSyntaxHighlighter.Hljs.Jsx2>
+        <ReactSyntaxHighlighter.Hljs lineProps={props} wrapLines={true}>
+        {"foobar"}
+        </ReactSyntaxHighlighter.Hljs>
       ) |> Enzyme.shallow;
       let jsComponent = [%bs.raw "
         require('react').createElement(
@@ -150,9 +148,9 @@ describe("jsx2", () => {
     test("function object", () => {
       let props = `Factory((ln) => ReactDOMRe.props(~className="foobar_" ++ string_of_int(ln), ()));
       let reasonComponent = (
-        <ReactSyntaxHighlighter.Hljs.Jsx2 lineProps={props} wrapLines={true}>
-        ...{"foobar"}
-        </ReactSyntaxHighlighter.Hljs.Jsx2>
+        <ReactSyntaxHighlighter.Hljs lineProps={props} wrapLines={true}>
+        {"foobar"}
+        </ReactSyntaxHighlighter.Hljs>
       ) |> Enzyme.shallow;
       let jsComponent = [%bs.raw "
         require('react').createElement(
